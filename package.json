@@ -1,0 +1,22 @@
+{
+  "name": "mocknest",
+  "version": "0.1.0",
+  "description": "A lightweight, configurable fake REST API service for frontend development and API testing.",
+  "main": "src/server.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "mock",
+    "api",
+    "fake-api",
+    "rest",
+    "json-server"
+  ],
+  "author": "Utsav Bhattarai",
+  "license": "MIT"
+}
