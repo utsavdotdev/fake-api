@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "postId": 1,
+    "userId": 5,
+    "body": "Excellent article! The async/await section really cleared things up for me.",
+    "createdAt": "2026-01-10T09:24:00.000Z"
+  },
+  {
+    "id": 2,
+    "postId": 1,
+    "userId": 9,
+    "body": "Could you add a section about error handling with promises?",
+    "createdAt": "2026-01-11T14:05:00.000Z"
+  },
+  {
+    "id": 3,
+    "postId": 2,
+    "userId": 6,
+    "body": "The versioning strategy here is spot on. Saving this for reference.",
+    "createdAt": "2026-01-12T08:41:00.000Z"
+  },
+  {
+    "id": 4,
+    "postId": 3,
+    "userId": 3,
+    "body": "Never fully understood microtasks until now. Thanks for the diagrams!",
+    "createdAt": "2026-01-13T18:30:00.000Z"
+  },
+  {
+    "id": 5,
+    "postId": 4,
+    "userId": 2,
+    "body": "Multi-stage builds made our images 60% smaller. Great tips.",
+    "createdAt": "2026-01-14T11:12:00.000Z"
+  },
+  {
+    "id": 6,
+    "postId": 5,
+    "userId": 1,
+    "body": "Do you recommend any specific tools for e2e testing in CI?",
+    "createdAt": "2026-01-15T07:58:00.000Z"
+  },
+  {
+    "id": 7,
+    "postId": 6,
+    "userId": 10,
+    "body": "Fair comparison. Too many articles are biased toward one or the other.",
+    "createdAt": "2026-01-16T16:47:00.000Z"
+  },
+  {
+    "id": 8,
+    "postId": 8,
+    "userId": 4,
+    "body": "The dashboard example is exactly what I needed for my current project.",
+    "createdAt": "2026-01-17T10:03:00.000Z"
+  },
+  {
+    "id": 9,
+    "postId": 9,
+    "userId": 7,
+    "body": "Caching dependencies cut our workflow runtime in half. Highly recommend.",
+    "createdAt": "2026-01-18T13:22:00.000Z"
+  },
+  {
+    "id": 10,
+    "postId": 10,
+    "userId": 5,
+    "body": "The retry with exponential backoff snippet is gold. Thank you!",
+    "createdAt": "2026-01-19T09:50:00.000Z"
+  }
+]

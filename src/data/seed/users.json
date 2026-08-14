@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Aarav Sharma",
+    "username": "aarav_sharma",
+    "email": "aarav.sharma@example.com",
+    "role": "admin",
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Priya Karki",
+    "username": "priya.karki",
+    "email": "priya.karki@example.com",
+    "role": "author",
+    "active": true
+  },
+  {
+    "id": 3,
+    "name": "Bibek Thapa",
+    "username": "bibek.thapa",
+    "email": "bibek.thapa@example.com",
+    "role": "reader",
+    "active": false
+  },
+  {
+    "id": 4,
+    "name": "Sneha Gurung",
+    "username": "sneha_g",
+    "email": "sneha.gurung@example.com",
+    "role": "author",
+    "active": true
+  },
+  {
+    "id": 5,
+    "name": "Ramesh Adhikari",
+    "username": "ramesh.adhikari",
+    "email": "ramesh.adhikari@example.com",
+    "role": "reader",
+    "active": true
+  },
+  {
+    "id": 6,
+    "name": "Anisha Maharjan",
+    "username": "anisha_m",
+    "email": "anisha.maharjan@example.com",
+    "role": "editor",
+    "active": true
+  },
+  {
+    "id": 7,
+    "name": "Sujan Basnet",
+    "username": "sujan.basnet",
+    "email": "sujan.basnet@example.com",
+    "role": "reader",
+    "active": false
+  },
+  {
+    "id": 8,
+    "name": "Ritika Shrestha",
+    "username": "ritika_shrestha",
+    "email": "ritika.shrestha@example.com",
+    "role": "author",
+    "active": true
+  },
+  {
+    "id": 9,
+    "name": "Kiran Rai",
+    "username": "kiran_rai",
+    "email": "kiran.rai@example.com",
+    "role": "reader",
+    "active": true
+  },
+  {
+    "id": 10,
+    "name": "Nisha Tamang",
+    "username": "nisha.tamang",
+    "email": "nisha.tamang@example.com",
+    "role": "admin",
+    "active": true
+  }
+]

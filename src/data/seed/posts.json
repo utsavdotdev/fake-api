@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "userId": 2,
+    "title": "Getting Started with Modern JavaScript",
+    "body": "A practical guide to writing clean, modern JavaScript with ES6 modules, destructuring, and async/await.",
+    "tags": ["javascript", "tutorial"],
+    "published": true
+  },
+  {
+    "id": 2,
+    "userId": 4,
+    "title": "Designing RESTful APIs the Right Way",
+    "body": "Resource naming, HTTP verbs, status codes, and versioning strategies for long-lived REST APIs.",
+    "tags": ["api", "design"],
+    "published": true
+  },
+  {
+    "id": 3,
+    "userId": 2,
+    "title": "Understanding Node.js Event Loop",
+    "body": "How the event loop, microtasks, and macrotasks work under the hood to keep Node.js non-blocking.",
+    "tags": ["nodejs", "internals"],
+    "published": false
+  },
+  {
+    "id": 4,
+    "userId": 8,
+    "title": "A Beginner's Guide to Docker",
+    "body": "Containerize your first application with Dockerfiles, images, and multi-stage builds.",
+    "tags": ["docker", "devops"],
+    "published": true
+  },
+  {
+    "id": 5,
+    "userId": 4,
+    "title": "Testing Frontend Applications",
+    "body": "Unit, integration, and end-to-end testing strategies for modern frontend codebases.",
+    "tags": ["testing", "frontend"],
+    "published": true
+  },
+  {
+    "id": 6,
+    "userId": 2,
+    "title": "PostgreSQL vs MongoDB: A Balanced Look",
+    "body": "Comparing relational and document databases across data modeling, scaling, and tooling.",
+    "tags": ["database", "comparison"],
+    "published": true
+  },
+  {
+    "id": 7,
+    "userId": 8,
+    "title": "Securing Express Apps with Helmet",
+    "body": "Hardening HTTP headers and reducing common web vulnerabilities with minimal configuration.",
+    "tags": ["security", "express"],
+    "published": false
+  },
+  {
+    "id": 8,
+    "userId": 2,
+    "title": "CSS Grid in Practice",
+    "body": "Real-world layout patterns using CSS Grid, from simple galleries to complex dashboards.",
+    "tags": ["css", "frontend"],
+    "published": true
+  },
+  {
+    "id": 9,
+    "userId": 4,
+    "title": "Continuous Integration with GitHub Actions",
+    "body": "Automating builds, tests, and deployments using reusable workflows and cached dependencies.",
+    "tags": ["ci", "github"],
+    "published": true
+  },
+  {
+    "id": 10,
+    "userId": 8,
+    "title": "Graceful Degradation of Network Requests",
+    "body": "Building resilient frontends that handle timeouts, retries, and partial failures with grace.",
+    "tags": ["networking", "resilience"],
+    "published": true
+  }
+]
