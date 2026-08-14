@@ -1,4 +1,5 @@
 import * as resourceService from '../services/resourceService.js';
+import paginate from '../middlewares/paginate.js';
 
 function resourceOf(req) {
   return req.params.resource || req.resource;
@@ -6,7 +7,9 @@ function resourceOf(req) {
 
 export function list(req, res, next) {
   try {
-    res.json(resourceService.list(resourceOf(req)));
+    const data = resourceService.list(resourceOf(req));
+    const { _page, _limit, _sort, _order } = req.query;
+    res.json(paginate(data, { page: _page, limit: _limit, sort: _sort, order: _order }));
   } catch (err) {
     next(err);
   }
