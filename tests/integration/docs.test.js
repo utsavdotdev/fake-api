@@ -4,9 +4,20 @@ import app from '../../src/app.js';
 import swaggerSpec from '../../src/docs/swagger.js';
 
 describe('swagger documentation', () => {
-  test('GET /docs no longer serves the Swagger UI (moved to Fumadocs)', async () => {
+  test('GET /swagger-docs/ serves the Swagger UI', async () => {
+    const res = await request(app).get('/swagger-docs/');
+    expect(res.status).toBe(200);
+    expect(res.type).toMatch(/html/);
+    expect(res.text).toContain('swagger-ui');
+  });
+
+  test('GET /docs/ serves the Fumadocs site when built', async () => {
     const res = await request(app).get('/docs/');
-    expect(res.status).toBe(404);
+    // 200 when the static export exists (docs/out), 404 otherwise
+    expect([200, 404]).toContain(res.status);
+    if (res.status === 200) {
+      expect(res.text).toContain('MockNest');
+    }
   });
 
   test('spec defines all three resources with shared components', () => {

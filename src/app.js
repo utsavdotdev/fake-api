@@ -1,14 +1,23 @@
+import { existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
+import swaggerUi from 'swagger-ui-express';
 
 import env from './config/env.js';
 import routes from './routes/index.js';
+import swaggerSpec from './docs/swagger.js';
 import simulateDelay from './middlewares/simulateDelay.js';
 import simulateError from './middlewares/simulateError.js';
 import errorHandler from './middlewares/errorHandler.js';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const docsOutDir = join(here, '..', 'docs', 'out');
 
 const app = express();
 
@@ -39,7 +48,14 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+app.use('/swagger-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use('/api', routes);
+
+// Serve the statically exported Fumadocs site (docs/out) at /docs when built
+if (existsSync(docsOutDir)) {
+  app.use(express.static(docsOutDir));
+}
 
 app.use((req, res) => {
   res.status(404).json({
