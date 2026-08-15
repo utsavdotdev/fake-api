@@ -14,7 +14,8 @@ function simulateDelay(req, res, next) {
   const clamped = calculateDelay(req.query._delay, env.maxDelayMs);
 
   if (clamped <= 0) {
-    return next();
+    next();
+    return;
   }
 
   setTimeout(next, clamped);

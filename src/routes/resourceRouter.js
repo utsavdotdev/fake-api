@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import * as controller from '../controllers/resourceController.js';
 import validate from '../middlewares/validate.js';
-import { rules } from '../validators/index.js';
+import rules from '../validators/index.js';
 
 export default function resourceRouter(resource) {
   const router = Router();

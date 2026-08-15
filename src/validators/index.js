@@ -10,26 +10,15 @@ function requiredString(field) {
 }
 
 function optionalString(field) {
-  return body(field)
-    .optional()
-    .trim()
-    .isString()
-    .withMessage(`${field} must be a string`);
+  return body(field).optional().trim().isString().withMessage(`${field} must be a string`);
 }
 
 function requiredInt(field) {
-  return body(field)
-    .toInt()
-    .isInt()
-    .withMessage(`${field} is required and must be an integer`);
+  return body(field).toInt().isInt().withMessage(`${field} is required and must be an integer`);
 }
 
 function optionalInt(field) {
-  return body(field)
-    .optional()
-    .toInt()
-    .isInt()
-    .withMessage(`${field} must be an integer`);
+  return body(field).optional().toInt().isInt().withMessage(`${field} must be an integer`);
 }
 
 function requiredEmail() {
@@ -67,8 +56,10 @@ const commentRules = {
   patch: [optionalInt('postId'), optionalString('body')],
 };
 
-export const rules = {
+const rules = {
   users: userRules,
   posts: postRules,
   comments: commentRules,
 };
+
+export default rules;

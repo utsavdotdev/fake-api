@@ -13,7 +13,10 @@
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "test:unit": "cross-env NODE_OPTIONS=--experimental-vm-modules jest tests/unit",
     "test:integration": "cross-env NODE_OPTIONS=--experimental-vm-modules jest tests/integration",
-    "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+    "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "lint": "eslint src tests",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "keywords": [
     "mock",
@@ -34,10 +37,17 @@
     "morgan": "^1.11.0"
   },
   "devDependencies": {
+    "@jest/globals": "^30.4.1",
     "cross-env": "^10.1.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "husky": "^9.1.7",
     "jest": "^30.4.2",
+    "lint-staged": "^17.3.0",
     "nodemon": "^3.1.14",
-    "supertest": "^7.2.2",
-    "@jest/globals": "^30.4.1"
+    "prettier": "^3.9.6",
+    "supertest": "^7.2.2"
   }
 }
