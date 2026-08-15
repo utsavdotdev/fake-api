@@ -51,8 +51,16 @@ app.use('/swagger-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api', routes);
 
-// Serve the statically exported Fumadocs site (docs/out) at /docs when built
+// Serve the statically exported Fumadocs site (docs/out) at /docs when built.
+// Next.js injects inline scripts (RSC payload, theme init) that helmet's CSP
+// would otherwise block, so drop the CSP header for static doc responses only.
 if (existsSync(docsOutDir)) {
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/docs')) {
+      res.removeHeader('Content-Security-Policy');
+    }
+    next();
+  });
   app.use(express.static(docsOutDir));
 }
 
