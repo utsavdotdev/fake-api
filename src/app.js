@@ -3,10 +3,12 @@ import express from 'express';
 import env from './config/env.js';
 import routes from './routes/index.js';
 import { NotFoundError } from './services/resourceService.js';
+import simulateDelay from './middlewares/simulateDelay.js';
 
 const app = express();
 
 app.use(express.json());
+app.use(simulateDelay);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
