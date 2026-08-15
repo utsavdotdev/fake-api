@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "start": "node src/server.js",
+    "start": "npm run docs:build && node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "test:unit": "cross-env NODE_OPTIONS=--experimental-vm-modules jest tests/unit",
@@ -20,7 +20,7 @@
     "docs:export": "node scripts/export-openapi.mjs",
     "docs:generate": "npm --prefix docs run generate:docs",
     "docs:dev": "npm --prefix docs run dev",
-    "docs:build": "npm --prefix docs run build"
+    "docs:build": "npm run docs:export && npm run docs:generate && npm --prefix docs run build"
   },
   "keywords": [
     "mock",

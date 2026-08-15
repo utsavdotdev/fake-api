@@ -6,7 +6,6 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
-import rateLimit from 'express-rate-limit';
 import swaggerUi from 'swagger-ui-express';
 
 import env from './config/env.js';
@@ -31,14 +30,14 @@ app.use(
 
 app.use(morgan(env.nodeEnv === 'production' ? 'combined' : 'dev'));
 
-app.use(
-  rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-  }),
-);
+// app.use(
+//   rateLimit({
+//     windowMs: 15 * 60 * 1000,
+//     max: 100,
+//     standardHeaders: true,
+//     legacyHeaders: false,
+//   }),
+// );
 
 app.use(express.json());
 app.use(simulateDelay);
