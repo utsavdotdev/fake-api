@@ -48,6 +48,15 @@ describe('paginate', () => {
     expect(result.data.map((item) => item.name)).toEqual(['charlie', 'bob', 'alice']);
   });
 
+  test('keeps relative order when sort values are equal', () => {
+    const items = [
+      { id: 1, name: 'same' },
+      { id: 2, name: 'same' },
+    ];
+    const result = paginate(items, { sort: 'name' });
+    expect(result.data.map((item) => item.id)).toEqual([1, 2]);
+  });
+
   test('sorts by numeric field correctly', () => {
     const result = paginate(DATA, { sort: 'id' });
     expect(result.data.map((item) => item.id)).toEqual([1, 2, 3]);

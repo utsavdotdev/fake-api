@@ -27,7 +27,10 @@ describe('users resource API', () => {
       .post('/api/users')
       .send({ name: 'Integration Tester', email: 'integration@example.com' });
     expect(res.status).toBe(201);
-    expect(res.body).toMatchObject({ name: 'Integration Tester', email: 'integration@example.com' });
+    expect(res.body).toMatchObject({
+      name: 'Integration Tester',
+      email: 'integration@example.com',
+    });
     expect(res.body.id).toEqual(expect.any(Number));
   });
 
@@ -77,6 +80,26 @@ describe('users resource API', () => {
 
   test('GET /api/users/:id with a nonexistent id returns 404', async () => {
     const res = await request(app).get('/api/users/9999');
+    expect(res.status).toBe(404);
+    expect(res.body).toMatchObject({ error: true, status: 404 });
+  });
+
+  test('PUT /api/users/:id with a nonexistent id returns 404', async () => {
+    const res = await request(app)
+      .put('/api/users/9999')
+      .send({ name: 'Ghost', email: 'ghost@example.com' });
+    expect(res.status).toBe(404);
+    expect(res.body).toMatchObject({ error: true, status: 404 });
+  });
+
+  test('PATCH /api/users/:id with a nonexistent id returns 404', async () => {
+    const res = await request(app).patch('/api/users/9999').send({ name: 'Ghost' });
+    expect(res.status).toBe(404);
+    expect(res.body).toMatchObject({ error: true, status: 404 });
+  });
+
+  test('DELETE /api/users/:id with a nonexistent id returns 404', async () => {
+    const res = await request(app).delete('/api/users/9999');
     expect(res.status).toBe(404);
     expect(res.body).toMatchObject({ error: true, status: 404 });
   });

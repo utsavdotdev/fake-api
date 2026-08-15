@@ -67,6 +67,10 @@ describe('db CRUD', () => {
     expect(db.remove('users', 9999)).toBeNull();
   });
 
+  test('getAll returns null for an unsupported resource', () => {
+    expect(db.getAll('nope')).toBeNull();
+  });
+
   test('getAll returns clones of every record', () => {
     const all = db.getAll('users');
     const snapshot = all.map((item) => item.id).sort((a, b) => a - b);

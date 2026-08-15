@@ -12,7 +12,8 @@
     "dev": "nodemon src/server.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "test:unit": "cross-env NODE_OPTIONS=--experimental-vm-modules jest tests/unit",
-    "test:integration": "cross-env NODE_OPTIONS=--experimental-vm-modules jest tests/integration"
+    "test:integration": "cross-env NODE_OPTIONS=--experimental-vm-modules jest tests/integration",
+    "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "keywords": [
     "mock",
@@ -36,6 +37,7 @@
     "cross-env": "^10.1.0",
     "jest": "^30.4.2",
     "nodemon": "^3.1.14",
-    "supertest": "^7.2.2"
+    "supertest": "^7.2.2",
+    "@jest/globals": "^30.4.1"
   }
 }
