@@ -1,5 +1,5 @@
 export default {
   testEnvironment: 'node',
-  testMatch: ['**/tests/unit/**/*.test.js'],
+  testMatch: ['**/tests/**/*.test.js'],
   coveragePathIgnorePatterns: ['/node_modules/', '/src/data/seed/'],
 };
