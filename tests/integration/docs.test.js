@@ -4,25 +4,9 @@ import app from '../../src/app.js';
 import swaggerSpec from '../../src/docs/swagger.js';
 
 describe('swagger documentation', () => {
-  test('GET /docs/ serves the Swagger UI', async () => {
+  test('GET /docs no longer serves the Swagger UI (moved to Fumadocs)', async () => {
     const res = await request(app).get('/docs/');
-    expect(res.status).toBe(200);
-    expect(res.type).toMatch(/html/);
-    expect(res.text).toContain('swagger-ui');
-  });
-
-  test('GET /docs/swagger-ui-init.js serves the spec with the API title and paths', async () => {
-    const res = await request(app).get('/docs/swagger-ui-init.js');
-    expect(res.status).toBe(200);
-    expect(res.type).toMatch(/javascript/);
-    expect(res.text).toContain('MockNest API');
-    expect(res.text).toContain('/api/users');
-  });
-
-  test('GET /docs redirects to the trailing-slash UI route', async () => {
-    const res = await request(app).get('/docs');
-    expect(res.status).toBe(301);
-    expect(res.headers.location).toBe('/docs/');
+    expect(res.status).toBe(404);
   });
 
   test('spec defines all three resources with shared components', () => {

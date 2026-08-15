@@ -3,11 +3,9 @@ import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
-import swaggerUi from 'swagger-ui-express';
 
 import env from './config/env.js';
 import routes from './routes/index.js';
-import swaggerSpec from './docs/swagger.js';
 import simulateDelay from './middlewares/simulateDelay.js';
 import simulateError from './middlewares/simulateError.js';
 import errorHandler from './middlewares/errorHandler.js';
@@ -40,8 +38,6 @@ app.use(simulateError);
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
-
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api', routes);
 

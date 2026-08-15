@@ -16,7 +16,11 @@
     "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "lint": "eslint src tests",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:export": "node scripts/export-openapi.mjs",
+    "docs:generate": "npm --prefix docs run generate:docs",
+    "docs:dev": "npm --prefix docs run dev",
+    "docs:build": "npm --prefix docs run build"
   },
   "keywords": [
     "mock",
@@ -35,8 +39,7 @@
     "express-validator": "^7.3.2",
     "helmet": "^8.3.0",
     "morgan": "^1.11.0",
-    "swagger-jsdoc": "^6.3.0",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-jsdoc": "^6.3.0"
   },
   "devDependencies": {
     "@jest/globals": "^30.4.1",

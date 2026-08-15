@@ -27,6 +27,11 @@ const options = {
         description: 'Local development server',
       },
     ],
+    tags: [
+      { name: 'Users', description: 'User resources' },
+      { name: 'Posts', description: 'Post resources' },
+      { name: 'Comments', description: 'Comment resources' },
+    ],
     components: {
       schemas: {
         Error: {
