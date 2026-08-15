@@ -1,11 +1,9 @@
 import express from 'express';
 
-import env from './config/env.js';
 import routes from './routes/index.js';
-import { NotFoundError } from './services/resourceService.js';
-import { ValidationError } from './middlewares/validate.js';
 import simulateDelay from './middlewares/simulateDelay.js';
 import simulateError from './middlewares/simulateError.js';
+import errorHandler from './middlewares/errorHandler.js';
 
 const app = express();
 
@@ -19,19 +17,14 @@ app.get('/health', (req, res) => {
 
 app.use('/api', routes);
 
-app.use((err, req, res, next) => {
-  if (err instanceof NotFoundError) {
-    return res.status(404).json({ error: err.message });
-  }
-  if (err instanceof ValidationError) {
-    return res.status(422).json({
-      error: err.message,
-      status: 422,
-      errors: err.errors.map(({ path, msg, value }) => ({ field: path, message: msg, value })),
-    });
-  }
-  console.error(err);
-  return res.status(500).json({ error: 'Internal Server Error' });
+app.use((req, res) => {
+  res.status(404).json({
+    error: true,
+    status: 404,
+    message: `Route ${req.method} ${req.originalUrl} not found`,
+  });
 });
+
+app.use(errorHandler);
 
 export default app;

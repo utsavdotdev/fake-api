@@ -1,13 +1,6 @@
 import { validationResult } from 'express-validator';
 
-export class ValidationError extends Error {
-  constructor(errors) {
-    super('Validation failed');
-    this.name = 'ValidationError';
-    this.status = 422;
-    this.errors = errors;
-  }
-}
+import { ValidationError } from '../utils/errors.js';
 
 export default function validate(rules) {
   return [

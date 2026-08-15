@@ -1,12 +1,5 @@
 import * as db from '../data/db.js';
-
-export class NotFoundError extends Error {
-  constructor(resource, id) {
-    super(`${resource} with id ${id} not found`);
-    this.name = 'NotFoundError';
-    this.status = 404;
-  }
-}
+import { NotFoundError } from '../utils/errors.js';
 
 function requireResource(resource) {
   if (!db.resourceExists(resource)) {
