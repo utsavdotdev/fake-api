@@ -1,13 +1,21 @@
-function simulateError(req, res, next) {
-  const raw = req.query._status;
-
+export function parseStatus(raw) {
   if (raw === undefined) {
-    return next();
+    return null;
   }
 
   const status = Number.parseInt(raw, 10);
 
   if (!Number.isFinite(status) || status < 400 || status > 599) {
+    return null;
+  }
+
+  return status;
+}
+
+function simulateError(req, res, next) {
+  const status = parseStatus(req.query._status);
+
+  if (status === null) {
     return next();
   }
 

@@ -1,14 +1,21 @@
 import env from '../config/env.js';
 
-function simulateDelay(req, res, next) {
-  const raw = req.query._delay;
+export function calculateDelay(raw, maxDelayMs) {
   const delay = Number.parseInt(raw, 10);
 
   if (!Number.isFinite(delay) || delay <= 0) {
-    return next();
+    return 0;
   }
 
-  const clamped = Math.min(delay, env.maxDelayMs);
+  return Math.min(delay, maxDelayMs);
+}
+
+function simulateDelay(req, res, next) {
+  const clamped = calculateDelay(req.query._delay, env.maxDelayMs);
+
+  if (clamped <= 0) {
+    return next();
+  }
 
   setTimeout(next, clamped);
 }
