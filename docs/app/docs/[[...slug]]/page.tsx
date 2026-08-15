@@ -2,6 +2,7 @@ import { source } from '@/lib/source';
 import { openapi } from '@/lib/openapi';
 import { getMDXComponents } from '@/components/mdx';
 import { OpenAPIPage } from '@/components/api-page';
+import { DocsBody, DocsPage } from 'fumadocs-ui/layouts/docs/page';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -17,13 +18,17 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
   const MdxContent = page.data.body;
 
   return (
-    <MdxContent
-      components={getMDXComponents({
-        OpenAPIPage: async (props) => (
-          <OpenAPIPage {...(await openapi.preloadOpenAPIPage(page))} {...props} />
-        ),
-      })}
-    />
+    <DocsPage toc={page.data.toc} full={page.data.full}>
+      <DocsBody>
+        <MdxContent
+          components={getMDXComponents({
+            OpenAPIPage: async (props) => (
+              <OpenAPIPage {...(await openapi.preloadOpenAPIPage(page))} {...props} />
+            ),
+          })}
+        />
+      </DocsBody>
+    </DocsPage>
   );
 }
 

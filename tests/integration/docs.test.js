@@ -20,6 +20,15 @@ describe('swagger documentation', () => {
     }
   });
 
+  test('GET / redirects to the docs home page when built', async () => {
+    const res = await request(app).get('/');
+    // 302 to /docs/ when the static export exists, otherwise 404
+    expect([302, 404]).toContain(res.status);
+    if (res.status === 302) {
+      expect(res.headers.location).toBe('/docs/');
+    }
+  });
+
   test('spec defines all three resources with shared components', () => {
     expect(swaggerSpec.openapi).toBe('3.0.0');
     expect(swaggerSpec.info.title).toBe('MockNest API');

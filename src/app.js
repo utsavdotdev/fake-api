@@ -54,14 +54,27 @@ app.use('/api', routes);
 // Serve the statically exported Fumadocs site (docs/out) at /docs when built.
 // Next.js injects inline scripts (RSC payload, theme init) that helmet's CSP
 // would otherwise block, so drop the CSP header for static doc responses only.
+// Also redirect the root URL to the docs home page.
 if (existsSync(docsOutDir)) {
+  app.get('/', (req, res) => {
+    res.redirect('/docs/');
+  });
   app.use((req, res, next) => {
     if (req.path.startsWith('/docs')) {
       res.removeHeader('Content-Security-Policy');
     }
     next();
   });
-  app.use(express.static(docsOutDir));
+  app.use(
+    express.static(docsOutDir, {
+      // Browsers must revalidate docs pages so a stale export is never shown
+      setHeaders: (res, path) => {
+        if (path.endsWith('.html')) {
+          res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+        }
+      },
+    }),
+  );
 }
 
 app.use((req, res) => {
