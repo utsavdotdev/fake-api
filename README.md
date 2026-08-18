@@ -11,6 +11,31 @@ npm run dev
 
 The server runs at `http://localhost:3000` by default (set `PORT` to override).
 
+## Docker
+
+### Local development (Docker Compose)
+
+Start the API with nodemon live-reload; `src/` is mounted as a volume so code changes apply without rebuilding:
+
+```bash
+docker compose up
+```
+
+Force a fresh image build (after Dockerfile or dependency changes):
+
+```bash
+docker compose up --build
+```
+
+The API is reachable at `http://localhost:3000/health`, and environment variables are loaded from `.env`.
+
+### Production-style image
+
+```bash
+docker build -t mocknest .
+docker run -p 3000:3000 mocknest
+```
+
 ## Resources
 
 RESTful CRUD endpoints for seeded data:
