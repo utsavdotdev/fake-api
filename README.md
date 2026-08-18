@@ -1,5 +1,7 @@
 # MockNest
 
+[![CI](https://github.com/utsavdotdev/fake-api/actions/workflows/ci.yml/badge.svg)](https://github.com/utsavdotdev/fake-api/actions/workflows/ci.yml)
+
 A lightweight, configurable fake REST API service for frontend development and API testing.
 
 ## Quick Start
