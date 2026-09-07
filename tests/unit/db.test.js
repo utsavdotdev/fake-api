@@ -79,3 +79,47 @@ describe('db CRUD', () => {
     expect(snapshot.length).toBeGreaterThan(0);
   });
 });
+
+describe('db utility functions', () => {
+  test('listResources returns the supported resource names', () => {
+    expect(db.listResources()).toEqual(['users', 'posts', 'comments']);
+  });
+
+  test('counts returns a record count per supported resource', () => {
+    expect(db.counts()).toEqual([
+      { resource: 'users', count: expect.any(Number) },
+      { resource: 'posts', count: expect.any(Number) },
+      { resource: 'comments', count: expect.any(Number) },
+    ]);
+    db.counts().forEach(({ count }) => {
+      expect(count).toBeGreaterThan(0);
+    });
+  });
+
+  test('resetAll restores records after mutations', () => {
+    db.resetAll();
+    const beforeUsers = db.getAll('users').length;
+    expect(beforeUsers).toBe(10);
+
+    const created = db.create('users', { name: 'Temp', email: 'temp@example.com' });
+    db.update('users', 1, { name: 'Mutated', email: 'm@example.com' });
+    db.remove('users', 2);
+
+    expect(db.getAll('users').length).toBe(beforeUsers);
+    expect(db.getById('users', 1).name).toBe('Mutated');
+    expect(db.getById('users', 2)).toBeNull();
+    expect(db.getById('users', created.id).name).toBe('Temp');
+
+    const result = db.resetAll();
+
+    expect(result).toEqual([
+      { resource: 'users', count: 10 },
+      { resource: 'posts', count: 10 },
+      { resource: 'comments', count: 10 },
+    ]);
+    expect(db.getAll('users').length).toBe(10);
+    expect(db.getById('users', 1).name).not.toBe('Mutated');
+    expect(db.getById('users', 2)).not.toBeNull();
+    expect(db.getById('users', created.id)).toBeNull();
+  });
+});

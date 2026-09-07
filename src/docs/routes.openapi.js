@@ -141,6 +141,59 @@
 
 /**
  * @openapi
+ * /api/_meta:
+ *   get:
+ *     tags: [Utilities]
+ *     summary: List available resources and their record counts
+ *     description: Returns every supported resource alongside its current in-memory record count. Useful for test fixtures and sanity checks.
+ *     responses:
+ *       '200':
+ *         description: Resource inventory
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 resources:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       resource:
+ *                         type: string
+ *                       count:
+ *                         type: integer
+ *       default:
+ *         $ref: '#/components/responses/UnexpectedError'
+ * /api/_reset:
+ *   post:
+ *     tags: [Utilities]
+ *     summary: Reset all resources to their original seed data
+ *     description: Reloads every resource back to the seed JSON, undoing any in-memory create/update/delete operations performed during a test run.
+ *     responses:
+ *       '200':
+ *         description: Reset confirmation with restored counts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reset:
+ *                   type: boolean
+ *                 resources:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       resource:
+ *                         type: string
+ *                       count:
+ *                         type: integer
+ *       default:
+ *         $ref: '#/components/responses/UnexpectedError'
+ */
+/**
+ * @openapi
  * /api/posts:
  *   get:
  *     tags: [Posts]

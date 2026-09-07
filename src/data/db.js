@@ -17,6 +17,20 @@ export function resourceExists(resource) {
   return SUPPORTED_RESOURCES.includes(resource);
 }
 
+export function listResources() {
+  return [...SUPPORTED_RESOURCES];
+}
+
+export function resetAll() {
+  SUPPORTED_RESOURCES.forEach((resource) => {
+    store[resource] = loadResource(resource);
+  });
+  return SUPPORTED_RESOURCES.map((resource) => ({
+    resource,
+    count: store[resource].length,
+  }));
+}
+
 function nextId(resource) {
   const maxId = store[resource].reduce((max, record) => Math.max(max, record.id), 0);
   return maxId + 1;
@@ -27,6 +41,13 @@ export function getAll(resource) {
     return null;
   }
   return store[resource].map((record) => ({ ...record }));
+}
+
+export function counts() {
+  return SUPPORTED_RESOURCES.map((resource) => ({
+    resource,
+    count: store[resource].length,
+  }));
 }
 
 export function getById(resource, id) {

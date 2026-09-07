@@ -11,6 +11,22 @@ const pkg = require('../../package.json');
 
 const here = dirname(fileURLToPath(import.meta.url));
 
+const publicServerUrl = process.env.DOCS_PUBLIC_SERVER_URL;
+
+const servers = [
+  {
+    url: `http://localhost:${env.port}`,
+    description: 'Local development server',
+  },
+];
+
+if (publicServerUrl) {
+  servers.push({
+    url: publicServerUrl,
+    description: 'Public demo instance',
+  });
+}
+
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -21,12 +37,7 @@ const options = {
         'A lightweight, configurable fake REST API service for frontend development and API testing.\n\n' +
         'Supports `_delay` (simulated latency) and `_status` (simulated errors) query parameters on every endpoint.',
     },
-    servers: [
-      {
-        url: `http://localhost:${env.port}`,
-        description: 'Local development server',
-      },
-    ],
+    servers,
     tags: [
       { name: 'Users', description: 'User resources' },
       { name: 'Posts', description: 'Post resources' },

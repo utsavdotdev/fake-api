@@ -55,26 +55,29 @@ app.use('/api', routes);
 // Next.js injects inline scripts (RSC payload, theme init) that helmet's CSP
 // would otherwise block, so drop the CSP header for static doc responses only.
 // Also redirect the root URL to the docs home page.
+// The static export is built with basePath '/fake-api' so it's hosted under
+// /fake-api/docs on GitHub Pages. Mirror that prefix locally and keep /docs as
+// an alias for the README's documented URL.
 if (existsSync(docsOutDir)) {
   app.get('/', (req, res) => {
     res.redirect('/docs/');
   });
   app.use((req, res, next) => {
-    if (req.path.startsWith('/docs')) {
+    if (req.path.startsWith('/docs') || req.path.startsWith('/fake-api/docs')) {
       res.removeHeader('Content-Security-Policy');
     }
     next();
   });
-  app.use(
-    express.static(docsOutDir, {
-      // Browsers must revalidate docs pages so a stale export is never shown
-      setHeaders: (res, path) => {
-        if (path.endsWith('.html')) {
-          res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-        }
-      },
-    }),
-  );
+  const docsStatic = express.static(docsOutDir, {
+    // Browsers must revalidate docs pages so a stale export is never shown
+    setHeaders: (res, path) => {
+      if (path.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+      }
+    },
+  });
+  app.use('/fake-api/docs', docsStatic);
+  app.use('/docs', docsStatic);
 }
 
 app.use((req, res) => {
