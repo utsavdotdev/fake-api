@@ -38,6 +38,20 @@ docker build -t mocknest .
 docker run -p 3000:3000 mocknest
 ```
 
+### Published image (GitHub Container Registry)
+
+Every merge to `main` publishes the image to GHCR:
+
+- `ghcr.io/utsavdotdev/mocknest:latest`
+- `ghcr.io/utsavdotdev/mocknest:<short-sha>` (e.g. `ghcr.io/utsavdotdev/mocknest:1a2b3c4`)
+
+Pull and run it:
+
+```bash
+docker pull ghcr.io/utsavdotdev/mocknest:latest
+docker run -p 3000:3000 ghcr.io/utsavdotdev/mocknest
+```
+
 ## Resources
 
 RESTful CRUD endpoints for seeded data:
