@@ -96,6 +96,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install docs dependencies
+        working-directory: docs
+        run: npm ci
+
       - name: Export OpenAPI spec
         env:
           DOCS_PUBLIC_SERVER_URL: ${{ vars.DOCS_PUBLIC_SERVER_URL }}
