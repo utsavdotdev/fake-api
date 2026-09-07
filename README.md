@@ -33,7 +33,7 @@ curl http://localhost:3000/health
 curl http://localhost:3000/api/users?_limit=2
 ```
 
-Open <http://localhost:3000/swagger-docs> for the interactive Swagger UI, or <http://localhost:3000/docs> for the rendered Fumadocs reference (available after `npm start`, which builds the docs).
+Open <http://localhost:3000/swagger-docs> for the interactive Swagger UI, or <http://localhost:3000/docs> for the rendered Fumadocs reference (available after `npm start`, which builds the docs). The published docs site lives at <https://utsavdotdev.github.io/fake-api>.
 
 ### Docker
 
@@ -134,11 +134,14 @@ curl "http://localhost:3000/api/posts?_delay=1200"
 
 ## API documentation
 
+- Published docs site: <https://utsavdotdev.github.io/fake-api>
 - Interactive Swagger UI: <http://localhost:3000/swagger-docs>
 - Rendered Fumadocs reference (built by `npm run docs:build`): <http://localhost:3000/docs>
 - Raw OpenAPI 3.0 spec: `npm run docs:export` writes to `docs/openapi.json`
 
 The Swagger UI covers every endpoint, request schema, validation rule, and response shape. Use it as the source of truth for field names and accepted values.
+
+To advertise a public API server in the generated OpenAPI spec (for example, on the hosted docs site), set the `DOCS_PUBLIC_SERVER_URL` environment variable before running `npm run docs:export` or `npm run docs:build`. The published Pages deploy reads it from the repo variable of the same name.
 
 ## Configuration
 
@@ -210,6 +213,7 @@ The Jest suite uses the experimental VM modules flag (`--experimental-vm-modules
 
 - **CI** (`.github/workflows/ci.yml`): on every push to `main` / `develop` and on every PR, runs install → lint → test (with coverage) → upload to Codecov → Docker build smoke test.
 - **CD**: on push to `main`, after the CI job succeeds, builds the Docker image, tags it as `latest` and the short commit SHA, and pushes both to `ghcr.io/utsavdotdev/mocknest`. The job uses the built-in `GITHUB_TOKEN` and grants `packages: write` so no extra secrets are required.
+- **Docs site**: on push to `main`, a `pages` job (after CI succeeds) builds the Fumadocs site with `npm run docs:build` and deploys `docs/out/` to GitHub Pages via `actions/deploy-pages`. The site is served under `/fake-api/` (matching `basePath` in `docs/next.config.mjs`) and is published at <https://utsavdotdev.github.io/fake-api>. Enable Pages in repo Settings → Pages with Source = "GitHub Actions" the first time.
 
 ## Security notes
 
